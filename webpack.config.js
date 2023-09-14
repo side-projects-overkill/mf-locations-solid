@@ -1,12 +1,10 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
-const ASSET_PATH = process.env.ASSET_PATH || '/';
-
 const deps = require('./package.json').dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: ASSET_PATH,
+    publicPath: 'auto',
   },
 
   resolve: {
