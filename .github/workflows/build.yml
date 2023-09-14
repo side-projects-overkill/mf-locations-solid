@@ -1,8 +1,9 @@
 name: hybridX push process
 on: 
+  workflow_dispatch:
   push:
     branches: 
-      - 'develop'
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
