@@ -1,10 +1,12 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
+const ASSET_PATH = process.env.ASSET_PATH || '/';
+
 const deps = require('./package.json').dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: 'http://localhost:3003/',
+    publicPath: ASSET_PATH,
   },
 
   resolve: {
@@ -46,7 +48,7 @@ module.exports = (_, argv) => ({
       remotes: {},
       exposes: {
         // "./LocationDetails": './src/LocationDetails.jsx',
-        "./placeLocationDetails": './src/placeLocationDetails.js',
+        './placeLocationDetails': './src/placeLocationDetails.js',
       },
       shared: {
         ...deps,
