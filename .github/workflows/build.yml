@@ -1,0 +1,25 @@
+name: hybridX push process
+on: 
+  push:
+    branches: 
+      - 'develop'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Setup node
+        run: yarn
+      - name: Build
+        run: yarn build
+      - name: Deploy
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with: 
+          ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+          BRANCH: gh-pages
+          FOLDER: dist
